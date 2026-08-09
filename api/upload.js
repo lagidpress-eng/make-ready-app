@@ -7,10 +7,15 @@ export default async function handler(req, res) {
   try {
     const { pole, map, pt, status, imageBase64, mimeType } = req.body;
 
-    // Авторизация по Email и ID таблицы (без секретных файлов и ключей!)
-    const auth = new google.auth.GoogleAuth({
-      scopes: ['https://www.googleapis.com/auth/drive', 'https://www.googleapis.com/auth/spreadsheets']
-    });
+    // Корректно расшифровываем ключ из Vercel
+    const privateKey = process.env.GOOGLE_KEY.replace(/\\n/g, '\n');
+
+    const auth = new google.auth.JWT(
+      process.env.GOOGLE_EMAIL,
+      null,
+      privateKey,
+      ['https://www.googleapis.com/auth/drive', 'https://www.googleapis.com/auth/spreadsheets']
+    );
 
     const drive = google.drive({ version: 'v3', auth });
     const sheets = google.sheets({ version: 'v4', auth });
