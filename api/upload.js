@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       null,
       privateKey,
       ['https://www.googleapis.com/auth/drive', 'https://www.googleapis.com/auth/spreadsheets'],
-      'ВАША_ЛИЧНАЯ_ПОЧТА@gmail.com' // <--- ВСТАВЬТЕ СЮДА ВАШ ЛИЧНЫЙ EMAIL
+      'ruslan.strtower@gmail.com' // <--- ВСТАВЬТЕ СЮДА ВАШ ЛИЧНЫЙ EMAIL
     );
 
     const drive = google.drive({ version: 'v3', auth });
